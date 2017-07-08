@@ -58,6 +58,33 @@ public class HiveConfigBean {
   )
   public String hiveJDBCUrl;
 
+  
+  @ConfigDef(
+      required = false,
+      label = "JDBC User",
+      type = ConfigDef.Type.STRING,
+      description = "JDBC user used to connect to Hive.",
+      defaultValue = "",
+      displayPosition= 16,
+      evaluation = ConfigDef.Evaluation.IMPLICIT,
+      elDefs = {StringEL.class},
+      group = "HIVE"
+  )
+  public String hiveJDBCUser;
+
+  @ConfigDef(
+      required = false,
+      label = "JDBC password",
+      type = ConfigDef.Type.STRING,
+      description = "JDBC password used to connect to Hive.",
+      defaultValue = "",
+      displayPosition= 18,
+      evaluation = ConfigDef.Evaluation.IMPLICIT,
+      elDefs = {StringEL.class},
+      group = "HIVE"
+  )
+  public String hiveJDBCPass;
+
   @ConfigDef(
       required = true,
       type = ConfigDef.Type.STRING,
@@ -126,7 +153,7 @@ public class HiveConfigBean {
   public Connection getHiveConnection() throws StageException {
     if(!HiveMetastoreUtil.isHiveConnectionValid(hiveConnection, loginUgi)) {
       LOG.info("Connection to Hive become stale, reconnecting.");
-      hiveConnection = HiveMetastoreUtil.getHiveConnection(hiveJDBCUrl, loginUgi);
+      hiveConnection = HiveMetastoreUtil.getHiveConnection(hiveJDBCUrl, loginUgi,hiveJDBCUser,hiveJDBCPass);
     }
     return hiveConnection;
   }

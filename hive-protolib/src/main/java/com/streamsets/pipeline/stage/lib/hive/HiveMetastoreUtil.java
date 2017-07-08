@@ -845,11 +845,18 @@ public final class HiveMetastoreUtil {
       final String jdbcUrl,
       final UserGroupInformation loginUgi
   ) throws StageException {
+      return getHiveConnection(jdbcUrl,loginUgi,null,null);
+  }
+  
+  public static Connection getHiveConnection(
+      final String jdbcUrl,
+      final UserGroupInformation loginUgi, String user,String pass
+  ) throws StageException {
     try {
       return loginUgi.doAs(new PrivilegedExceptionAction<Connection>() {
         @Override
         public Connection run() throws SQLException {
-          return DriverManager.getConnection(jdbcUrl);
+          return DriverManager.getConnection(jdbcUrl,user,pass);
         }
       });
     } catch (Exception e) {
