@@ -616,6 +616,7 @@
           <reuseForks>false</reuseForks>
         </configuration>
       </plugin>
+      <!-- 
       <plugin>
         <groupId>org.apache.hadoop</groupId>
         <artifactId>hadoop-maven-plugins</artifactId>
@@ -637,6 +638,7 @@
           </execution>
         </executions>
       </plugin>
+       -->
     </plugins>
   </build>
 

@@ -329,6 +329,7 @@
       <build>
         <plugins>
           <!-- Run apache-rat as part of every build, at root level only -->
+          <!-- 
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
@@ -357,6 +358,7 @@
               </execution>
             </executions>
           </plugin>
+           -->
         </plugins>
       </build>
     </profile>
